@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 170589326}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 865481696}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,11 +639,11 @@ Transform:
   m_GameObject: {fileID: 865481694}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.108197, y: 10.953665, z: -20.02515}
-  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_LocalPosition: {x: 0.09000015, y: -0.8899994, z: -0.001666387}
+  m_LocalScale: {x: 3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1514077291}
+  m_Father: {fileID: 940700588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &865481696
 BoxCollider:
@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 940700589}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -743,13 +743,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940700587}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: -7.1981974, y: 11.843664, z: -20.020151}
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 865481695}
   m_Father: {fileID: 1514077291}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!65 &940700589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -987,7 +988,6 @@ Transform:
   - {fileID: 136328854}
   - {fileID: 1067128423}
   - {fileID: 317421054}
-  - {fileID: 865481695}
   - {fileID: 940700588}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1049,20 +1049,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2423023161862356328, guid: a4be92f7e886f57468ca208ebd3334ba,
+        type: 3}
+      propertyPath: m_Name
+      value: Front Face Marker
+      objectReference: {fileID: 0}
     - target: {fileID: 5278796425529099424, guid: a4be92f7e886f57468ca208ebd3334ba,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305783225095392655, guid: a4be92f7e886f57468ca208ebd3334ba,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305783225095392655, guid: a4be92f7e886f57468ca208ebd3334ba,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 5682748167043872133, guid: a4be92f7e886f57468ca208ebd3334ba,
         type: 3}

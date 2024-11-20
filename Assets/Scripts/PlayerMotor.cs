@@ -20,6 +20,9 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
     private Vector3 cameraRotation = Vector3.zero;
+    private float jumpForce = 0f;
+
+    private bool isGrounded = true; // is the player on the ground?
 
     [SerializeField]
     private Camera cam;
@@ -35,24 +38,31 @@ public class PlayerMotor : MonoBehaviour
         PerformRotation();
     }
 
-    // get movement vector
+    // set movement vector
     public void Move(Vector3 _velocity) {
         velocity = _velocity;
     }
 
-    // perform movement based on velocity variable
+    // perform movements 
     void PerformMovement() {
+        // wasd movement
         if (velocity != Vector3.zero) {
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
         }
+        // jump
+        if (jumpForce > 0f) {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpForce = 0f;
+            isGrounded = false;
+        }
     }
 
-    // get rotation vector
+    // set rotation vector
     public void Rotate(Vector3 _rotation) {
         rotation = _rotation;
     }
 
-    // get camera rotation vector
+    // set camera rotation vector
     public void RotateCamera(Vector3 _cameraRotation) {
         cameraRotation = _cameraRotation;
     }
@@ -68,5 +78,24 @@ public class PlayerMotor : MonoBehaviour
         }
     }
 
-    
+    // set jump vector
+    public void Jump(float _jumpForce) {
+        if (isGrounded){
+            jumpForce = _jumpForce;
+        }
+    }
+
+    // check if player is on the ground    
+    private void OnCollisionStay(Collision collision) {
+        if (collision.gameObject.CompareTag("Ground")) {
+            isGrounded = true;
+        }
+    }
+
+    // check if player is off the ground
+    private void OnCollisionExit(Collision collision) {
+        if (collision.gameObject.CompareTag("Ground")) {
+            isGrounded = false;
+        }
+    }
 }

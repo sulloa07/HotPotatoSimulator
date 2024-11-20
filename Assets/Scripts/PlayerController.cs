@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private float speed = 5f;
     [SerializeField]
     private float lookSensitivity = 3f;
+    [SerializeField]
+    private float jumpForce = 5f; 
 
     private PlayerMotor motor;
 
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        // WASD movement
+        // movement (WASD)
         // calculate movement velocity as a 3D vector
         float xMove = Input.GetAxis("Horizontal");
         float zMove = Input.GetAxis("Vertical");
@@ -38,18 +40,25 @@ public class PlayerController : MonoBehaviour
         // apply movement
         motor.Move(velocity);
 
-        // mouse movement (direction player is looking affects where they move)
+        // horizontal camera rotation (mouse) (direction player is looking affects where they move)
         // calculate rotation as a 3D vector 
         float yRot = Input.GetAxis("Mouse X");
         Vector3 rotation = new Vector3(0f, yRot, 0f) * lookSensitivity;
         // apply rotation
         motor.Rotate(rotation);
 
-        // camera rotation (up and down)
+        // vertical camera rotation (mouse) (this only affects camera view)
         // calculate camera rotation as a 3D vector
         float xRot = Input.GetAxis("Mouse Y");
         Vector3 cameraRotation = new Vector3(-xRot, 0f, 0f) * lookSensitivity;
-        // apply camera rotation
+        // apply rotation
         motor.RotateCamera(cameraRotation);
+
+        // jump (space bar)
+        if (Input.GetButtonDown("Jump")) { 
+            // apply jump
+            motor.Jump(jumpForce);
+        }
+        
     }
 }
