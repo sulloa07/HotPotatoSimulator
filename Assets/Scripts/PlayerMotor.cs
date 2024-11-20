@@ -8,7 +8,8 @@ using Vector2 = UnityEngine.Vector2;
 using Quaternion = UnityEngine.Quaternion;
 
 /*
-PlayerMotor just has basic functions to control movement and the like.
+PlayerMotor has basic functions to control movement and the like. 
+Doesn't deal with player input or player statuses (like holding the potato).
 Author: Quincy Kapsner
 */
 
@@ -16,16 +17,20 @@ Author: Quincy Kapsner
 public class PlayerMotor : MonoBehaviour
 {
     private Rigidbody rb;
+    [SerializeField]
+    private Camera cam;
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
-    private Vector3 cameraRotation = Vector3.zero;
     private float jumpForce = 0f;
 
     private bool isGrounded = true; // is the player on the ground?
 
+    private float currentCameraAngle = 0f; // tracks the camera's pitch (up/down rotation)
     [SerializeField]
-    private Camera cam;
+    private float minCameraAngle = -60f;
+    [SerializeField]
+    private float maxCameraAngle = 60f;
 
     // Start is called before the first frame update
     void Start() {
@@ -64,18 +69,20 @@ public class PlayerMotor : MonoBehaviour
 
     // set camera rotation vector
     public void RotateCamera(Vector3 _cameraRotation) {
-        cameraRotation = _cameraRotation;
+        currentCameraAngle += _cameraRotation.x;
+        currentCameraAngle = Mathf.Clamp(currentCameraAngle, minCameraAngle, maxCameraAngle);
     }
 
     // perform rotation (movement and camera)
     void PerformRotation() {
         // movement
         rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
-
+        
         // camera
         if (cam != null) {
-            cam.transform.Rotate(cameraRotation);
+            cam.transform.localEulerAngles = new Vector3(currentCameraAngle, 0f, 0f);
         }
+        
     }
 
     // set jump vector

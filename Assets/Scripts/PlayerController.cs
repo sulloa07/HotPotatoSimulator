@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         // vertical camera rotation (mouse) (this only affects camera view)
         // calculate camera rotation as a 3D vector
         float xRot = Input.GetAxis("Mouse Y");
-        Vector3 cameraRotation = new Vector3(-xRot, 0f, 0f) * lookSensitivity;
+        Vector3 cameraRotation = new Vector3(-xRot, 0f, 0f) * lookSensitivity; // subtract bc unitys y is inverted
         // apply rotation
         motor.RotateCamera(cameraRotation);
 
