@@ -10,6 +10,7 @@ public class PotatoTimer : MonoBehaviour
      * when the potato is brought into existence start a timer
      * constantly tick down
      * when it hits 0, blow up and also blow up the player who currently posesses the potato
+     * 
     */
 
     public int timerMin = 1; //measured in seconds
@@ -38,4 +39,5 @@ public class PotatoTimer : MonoBehaviour
         //blowing up player: play animation and make them invisible/immovable
         //blowing up potato: play animation and delete gameobject
     }
+
 }
