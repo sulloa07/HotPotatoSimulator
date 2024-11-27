@@ -20,5 +20,4 @@ Create a fast-paced multiplayer game where players toss a ticking "hot potato" t
 - Gerardo Gutierrez:
 
 #### References
----
-[Halfway mark video](https://drive.google.com/file/d/1guEiGDeog5mkrC7EijifsxkhmsjNfJVU/view)
+- [Halfway mark video](https://drive.google.com/file/d/1guEiGDeog5mkrC7EijifsxkhmsjNfJVU/view)
