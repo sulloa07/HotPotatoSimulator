@@ -11,6 +11,7 @@ public class PotatoThrower : MonoBehaviour
 
     void Update()
     {
+        // TODO: add potato haver logic - only throw if the player has a potato
         // Check for input to throw the potato
         if (Input.GetKeyDown(KeyCode.LeftShift) && currentPotato == null) // left shift to throw
         {
