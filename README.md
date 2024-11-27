@@ -18,3 +18,7 @@ Create a fast-paced multiplayer game where players toss a ticking "hot potato" t
 - Riley Potter:
 - Santiago Ulloa: Set up arenas to play in with power-ups, help with potato-player interactions
 - Gerardo Gutierrez:
+
+#### References
+---
+[Halfway mark video](https://drive.google.com/file/d/1guEiGDeog5mkrC7EijifsxkhmsjNfJVU/view)
