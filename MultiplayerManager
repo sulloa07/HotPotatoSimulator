@@ -1,0 +1,53 @@
+using Unity.Netcode;
+using UnityEngine;
+
+public class MultiplayerManager : MonoBehaviour
+{
+    [SerializeField] private GameObject playerPrefab; // Assign a Player prefab in the Inspector.
+
+    private void Start()
+    {
+        // Create buttons to start host/client
+        CreateUIButtons();
+    }
+
+    private void CreateUIButtons()
+    {
+        // Create Host button
+        CreateButton("Host", new Vector2(-100, 0), StartHost);
+
+        // Create Client button
+        CreateButton("Client", new Vector2(100, 0), StartClient);
+    }
+
+    private void CreateButton(string label, Vector2 position, UnityEngine.Events.UnityAction action)
+    {
+        GameObject buttonObj = new GameObject(label);
+        buttonObj.transform.SetParent(GameObject.Find("Canvas").transform);
+
+        RectTransform rt = buttonObj.AddComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(200, 50);
+        rt.anchoredPosition = position;
+
+        UnityEngine.UI.Button button = buttonObj.AddComponent<UnityEngine.UI.Button>();
+        UnityEngine.UI.Text text = buttonObj.AddComponent<UnityEngine.UI.Text>();
+
+        button.onClick.AddListener(action);
+        text.text = label;
+        text.alignment = TextAnchor.MiddleCenter;
+
+        button.targetGraphic = text;
+    }
+
+    public void StartHost()
+    {
+        Debug.Log("Starting Host...");
+        NetworkManager.Singleton.StartHost();
+    }
+
+    public void StartClient()
+    {
+        Debug.Log("Starting Client...");
+        NetworkManager.Singleton.StartClient();
+    }
+}
