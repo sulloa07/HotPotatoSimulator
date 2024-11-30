@@ -2,35 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+
+public class PotatoSwitch : MonoBehaviour
 {
     /*
      *The function of this script:
      *control Who Holds The Potato
      */
 
-    public GameObject potatoHaver;
+    private GameObject potatoHaver;
+    private PlayerPotatoInterface potatoHaverLogic;
+
+    private Rigidbody rb;
 
     void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody>();
+
         //pick someone to start as potato holder
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         int picked = Random.Range(0, players.Length - 1);
         potatoHaver = players[picked];
-
-        //put potato in their hands
-        //TODO: when we know what that entails in terms of Player Conditions and whatnot
+        potatoHaverLogic = potatoHaver.GetComponent<PlayerPotatoInterface>();
+        //give that player the potato
+        potatoHaverLogic.pickUpPotato();
     }
 
-    void OnCollisionEnter(Collision coll)
+    public void setPotatoHaver(GameObject newHaver)
     {
-        //if collided thing is a player who is not the current potato holder, make them the potato holder and put the potato in their hands
-        if (coll.gameObject.CompareTag("Player"))
-        {
-            potatoHaver = coll.gameObject;
+        potatoHaver = newHaver;
+        potatoHaverLogic = potatoHaver.GetComponent<PlayerPotatoInterface>();
 
-            //put potato in their hands
-            //TODO: when we know what that entials in terms of Player Conditions and whatnot
-        }
     }
+
+    public GameObject getPotatoHaver()
+    {
+        return potatoHaver;
+    }
+
+    public void turnOffGravity()
+    {
+        rb.isKinematic = true;
+    }
+    public void turnOnGravity()
+    {
+        rb.isKinematic = false;
+    }
+    
+    public void setVelocity(Vector3 vel)
+    {
+        rb.velocity = vel;
+    }
+
+    
 }

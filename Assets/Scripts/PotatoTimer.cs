@@ -16,11 +16,15 @@ public class PotatoTimer : MonoBehaviour
     public int timerMin = 1; //measured in seconds
     public int timerMax = 60; //min and max are inclusive
 
+    private PotatoSwitch potatoSwitch;
+
     private float timeRemaining;
+
 
     void Start()
     {
         timeRemaining = (float)Random.Range(timerMin, timerMax + 1);
+        potatoSwitch = GetComponent<PotatoSwitch>();
     }
 
     void FixedUpdate()
@@ -38,6 +42,15 @@ public class PotatoTimer : MonoBehaviour
         //blow them up and blow potato up
         //blowing up player: play animation and make them invisible/immovable
         //blowing up potato: play animation and delete gameobject
+
+        GameObject holder = potatoSwitch.getPotatoHaver();
+
+        //play explosion animation for player and make invisible/immovable
+
+        //play explosion animation for potato
+
+        Object.Destroy(gameObject);
+
     }
 
 }

@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float lookSensitivity = 3f;
     [SerializeField]
-    private float jumpForce = 5f; 
+    private float jumpForce = 5f;
+
 
     private PlayerMotor motor;
+    
 
     // Start is called before the first frame update
     void Start() {
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour
             // apply jump
             motor.Jump(jumpForce);
         }
+
         
     }
 }
