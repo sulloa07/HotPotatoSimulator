@@ -27,8 +27,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     private GameObject potato;
     private PotatoSwitch potatoLogic;
 
-    [SerializeField] 
-    private Text potatoHolderText;
+    [SerializeField]
+    private Text potatoHolderText; 
 
      private AudioManager audioManager;
 
@@ -44,10 +44,10 @@ public class PlayerPotatoInterface : MonoBehaviour
         // quincy - find audio source
         audioManager = FindObjectOfType<AudioManager>();
 
-        // quincy - make sure the potato holder text is off
+        // quincy - make sure the potato holder text starts off 
         if (potatoHolderText != null) {
             potatoHolderText.gameObject.SetActive(false);
-        }
+        } 
     }
 
     void OnCollisionEnter(Collision coll)
@@ -125,7 +125,7 @@ public class PlayerPotatoInterface : MonoBehaviour
         potatoLogic.setVelocity(throwVel);
 
     }
-
+ 
     //just in case
     public bool isPotatoHaver()
     {
