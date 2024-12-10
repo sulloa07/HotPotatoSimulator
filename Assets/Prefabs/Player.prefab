@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 1422240569088427116}
   - component: {fileID: 6866151033346911848}
   - component: {fileID: -2186747699913617969}
+  - component: {fileID: 5440403864553463361}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -410,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  lookSensitivity: 3
+  lookSensitivity: 1
   jumpForce: 5
 --- !u!114 &-2186747699913617969
 MonoBehaviour:
@@ -425,3 +426,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwStrength: 10
+--- !u!114 &5440403864553463361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278796425529099424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d03b9ff832784c5d80ba918eaf09de4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potatoPrefab: {fileID: 4624280361818720866, guid: 788527cef1ded49b688d1b26bf8c3245,
+    type: 3}
+  throwPoint: {fileID: 0}
+  throwForce: 10
