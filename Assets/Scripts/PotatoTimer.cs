@@ -13,18 +13,20 @@ public class PotatoTimer : MonoBehaviour
      * 
     */
 
-    public int timerMin = 1; //measured in seconds
+    public int timerMin = 15; //measured in seconds
     public int timerMax = 60; //min and max are inclusive
 
     private PotatoSwitch potatoSwitch;
 
     private float timeRemaining;
 
+    private AudioManager audioManager;
 
     void Start()
     {
         timeRemaining = (float)Random.Range(timerMin, timerMax + 1);
         potatoSwitch = GetComponent<PotatoSwitch>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void FixedUpdate()
@@ -48,6 +50,11 @@ public class PotatoTimer : MonoBehaviour
         //play explosion animation for player and make invisible/immovable
 
         //play explosion animation for potato
+
+        // quincy - play sound
+        if (audioManager != null && audioManager.potatoExplode != null) {
+            audioManager.PlaySFX(audioManager.potatoExplode);
+        }
 
         Object.Destroy(gameObject);
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPotatoInterface : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class PlayerPotatoInterface : MonoBehaviour
     private GameObject potato;
     private PotatoSwitch potatoLogic;
 
+    [SerializeField] 
+    private Text potatoHolderText;
+
+     private AudioManager audioManager;
+
     void Start()
     {
         //find potato
@@ -34,6 +40,14 @@ public class PlayerPotatoInterface : MonoBehaviour
 
         //find camera
         playerCam = gameObject.transform.GetChild(0).gameObject;
+
+        // quincy - find audio source
+        audioManager = FindObjectOfType<AudioManager>();
+
+        // quincy - make sure the potato holder text is off
+        if (potatoHolderText != null) {
+            potatoHolderText.gameObject.SetActive(false);
+        }
     }
 
     void OnCollisionEnter(Collision coll)
@@ -50,9 +64,13 @@ public class PlayerPotatoInterface : MonoBehaviour
         updateHandPosition();
 
         //if we're holding the potato, move it to our hand position
+        // quincy - and show text that tells player they have it
         if (holdingPotato)
         {
             potato.transform.position = handPosition;
+            potatoHolderText.gameObject.SetActive(true);
+        } else if (!holdingPotato) {
+            potatoHolderText.gameObject.SetActive(false);
         }
 
         //if we click, attempt to throw the potato
@@ -65,7 +83,7 @@ public class PlayerPotatoInterface : MonoBehaviour
     void updateHandPosition()
     {
         //update handPosition: let's say for now it's just a little above the player and we can change this as necessary
-
+        // quincy - potato doesnt turn with the camera so leaving it above player and adding text that tells player they have it
         handPosition.x = gameObject.transform.position.x;
         handPosition.y = gameObject.transform.position.y + 2;
         handPosition.z = gameObject.transform.position.z;
@@ -78,6 +96,11 @@ public class PlayerPotatoInterface : MonoBehaviour
         hasPotato = true;
         holdingPotato = true;
 
+        // quincy - play sound
+        if (audioManager != null && audioManager.potatoPickup != null) {
+            audioManager.PlaySFX(audioManager.potatoPickup);
+        }
+
         //tell the potato that we are the current holder (For explosion purposes)
         potatoLogic.setPotatoHaver(gameObject);
         potatoLogic.turnOffGravity();
@@ -88,6 +111,11 @@ public class PlayerPotatoInterface : MonoBehaviour
     {
         holdingPotato = false;
         potatoLogic.turnOnGravity();
+
+        // quincy - play sound
+        if (audioManager != null && audioManager.potatoThrow != null) {
+            audioManager.PlaySFX(audioManager.potatoThrow);
+        }
 
         //give potato a velocity boost in the direction the player is lookin
         Vector3 lookingDir = playerCam.transform.forward;
