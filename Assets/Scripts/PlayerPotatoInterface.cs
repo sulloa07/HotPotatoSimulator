@@ -35,8 +35,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     void Start()
     {
         //find potato
-        potato = GameObject.FindGameObjectsWithTag("Potato")[0];
-        potatoLogic = potato.GetComponent<PotatoSwitch>();
+        //potato = GameObject.FindGameObjectsWithTag("Potato")[0];
+        //potatoLogic = potato.GetComponent<PotatoSwitch>();
 
         //find camera
         playerCam = gameObject.transform.GetChild(0).gameObject;
