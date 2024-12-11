@@ -102,8 +102,8 @@ public class PlayerPotatoInterface : MonoBehaviour
         }
 
         //tell the potato that we are the current holder (For explosion purposes)
-        potatoLogic.setPotatoHaver(gameObject);
-        potatoLogic.turnOffGravity();
+        //potatoLogic.setPotatoHaver(gameObject);
+        //potatoLogic.turnOffGravity();
 
     }
 
