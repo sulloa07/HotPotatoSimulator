@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Vector3 = UnityEngine.Vector3;
 
 /*
@@ -21,14 +22,39 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 5f; 
 
     private PlayerMotor motor;
+<<<<<<< Updated upstream
+=======
+
+
+    // Multiplayer Controller Alteruna 
+
+    private Alteruna.Avatar _avatar;
+
+>>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start() {
         motor = GetComponent<PlayerMotor>();
+
+        // Get Avatar Componenet
+
+        _avatar = GetComponent<Alteruna.Avatar>();
+
+        // Check if Avatar is the current player, otherwise, exit out.
+        if (!_avatar.IsMe)
+            return;
+
+        // Load Maze Scene
+        SceneManager.LoadScene("MazeEnvironment", LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
     void Update() {
+
+        // Check if Avatar is the current player, otherwise, exit out.
+        if (!_avatar.IsMe)
+            return;
+
         // movement (WASD)
         // calculate movement velocity as a 3D vector
         float xMove = Input.GetAxis("Horizontal");

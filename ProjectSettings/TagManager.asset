@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+<<<<<<< Updated upstream
+=======
+  - Potato
+  - NetworkManager
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
