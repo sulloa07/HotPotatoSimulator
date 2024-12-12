@@ -9,6 +9,8 @@ TagManager:
   - Floor
   - Coin
   - PlayerIndicator
+  - OuterWalls
+  - MovingWalls
   layers:
   - Default
   - TransparentFX
