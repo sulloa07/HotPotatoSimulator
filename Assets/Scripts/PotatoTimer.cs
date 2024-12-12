@@ -7,16 +7,17 @@ public class PotatoTimer : MonoBehaviour
 
     /*
      * The function of this script:
-     * when the potato is brought into existence start a timer
-     * constantly tick down
-     * when it hits 0, blow up and also blow up the player who currently posesses the potato
+     * when told to by the GameManager, start a timer
+     * when timer runs out, tell GameManager to perform an explosion.
      * 
     */
 
     public int timerMin = 15; //measured in seconds
     public int timerMax = 60; //min and max are inclusive
 
-    private PotatoSwitch potatoSwitch;
+    public bool timerGoing = false;
+
+    private GameManager gameManager;
 
     private float timeRemaining;
 
@@ -24,39 +25,46 @@ public class PotatoTimer : MonoBehaviour
 
     void Start()
     {
-        timeRemaining = (float)Random.Range(timerMin, timerMax + 1);
-        potatoSwitch = GetComponent<PotatoSwitch>();
+        
+
+        
+    }
+
+    public void instantiate(GameObject gameManagerGO)
+    {
+        gameManager = gameManagerGO.GetComponent<GameManager>();
         audioManager = FindObjectOfType<AudioManager>();
+    }
+
+    public void startTimer()
+    {
+        timerGoing = true;
+        timeRemaining = (float)Random.Range(timerMin, timerMax + 1);
     }
 
     void FixedUpdate()
     {
-        timeRemaining -= Time.deltaTime;
-        if (timeRemaining <= 0)
+        if (timerGoing)
         {
-            Explode();
+            timeRemaining -= Time.deltaTime;
+            if (timeRemaining <= 0)
+            {
+                timerGoing = false;
+                Explode();
+            }
         }
+
+
     }
 
     void Explode()
     {
-        //find player whose status is Holding Potato
-        //blow them up and blow potato up
-        //blowing up player: play animation and make them invisible/immovable
-        //blowing up potato: play animation and delete gameobject
-
-        GameObject holder = potatoSwitch.getPotatoHaver();
-
-        //play explosion animation for player and make invisible/immovable
-
-        //play explosion animation for potato
+        gameManager.Explode();
 
         // quincy - play sound
         if (audioManager != null && audioManager.potatoExplode != null) {
             audioManager.PlaySFX(audioManager.potatoExplode);
         }
-
-        Object.Destroy(gameObject);
 
     }
 

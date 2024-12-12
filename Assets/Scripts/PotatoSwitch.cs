@@ -6,38 +6,20 @@ using UnityEngine;
 public class PotatoSwitch : MonoBehaviour
 {
     /*
-     *The function of this script:
-     *control Who Holds The Potato
+     *Responsibilities of this script:
+     *turn gravity on or off and set our velocity
+     *that's basically it. This used to control who held the potato till i realized
+     *that was better left to an external manager.
      */
 
-    private GameObject potatoHaver;
-    private PlayerPotatoInterface potatoHaverLogic;
+    private GameManager gameManager;
 
     private Rigidbody rb;
 
-    void Start()
+    public void instantiatePotato(GameObject gameManagerGO)
     {
         rb = gameObject.GetComponent<Rigidbody>();
-
-        //pick someone to start as potato holder
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        int picked = Random.Range(0, players.Length - 1);
-        potatoHaver = players[picked];
-        potatoHaverLogic = potatoHaver.GetComponent<PlayerPotatoInterface>();
-        //give that player the potato
-        potatoHaverLogic.pickUpPotato();
-    }
-
-    public void setPotatoHaver(GameObject newHaver)
-    {
-        potatoHaver = newHaver;
-        potatoHaverLogic = potatoHaver.GetComponent<PlayerPotatoInterface>();
-
-    }
-
-    public GameObject getPotatoHaver()
-    {
-        return potatoHaver;
+        gameManager = gameManagerGO.GetComponent<GameManager>();
     }
 
     public void turnOffGravity()
