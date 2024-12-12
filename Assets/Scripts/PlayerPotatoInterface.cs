@@ -10,15 +10,16 @@ public class PlayerPotatoInterface : MonoBehaviour
     /*
      * This script attaches to the player
      * it controls:
+     * Storing whether this player is HOLDING the potato
      * picking up the potato
-     * Holding the potato
-     * Storing whether the player is the current potato haver and whether they're holding the potato
-     * throwing the potato
+     * Holding the potato (making kinematic and teleporting it to hand position)
+     * throwing the potato (making non-kinematic and giving a velocity boost in the target direction)
      */
 
     public float throwStrength;
 
-    private bool hasPotato;
+    private int playerIndex;
+
     private bool holdingPotato;
     private Vector3 handPosition;
 
@@ -27,16 +28,16 @@ public class PlayerPotatoInterface : MonoBehaviour
     private GameObject potato;
     private PotatoSwitch potatoLogic;
 
-    [SerializeField]
-    private Text potatoHolderText; 
+    private bool isPlayerIn;
 
-     private AudioManager audioManager;
+    [SerializeField]
+    private Text potatoHolderText;
+
+    private AudioManager audioManager;
+    private GameManager gameManager;
 
     void Start()
     {
-        //find potato
-        //potato = GameObject.FindGameObjectsWithTag("Potato")[0];
-        //potatoLogic = potato.GetComponent<PotatoSwitch>();
 
         //find camera
         playerCam = gameObject.transform.GetChild(0).gameObject;
@@ -45,9 +46,22 @@ public class PlayerPotatoInterface : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
 
         // quincy - make sure the potato holder text starts off 
-        if (potatoHolderText != null) {
+        if (potatoHolderText != null)
+        {
             potatoHolderText.gameObject.SetActive(false);
-        } 
+        }
+    }
+
+    //this is called by the GameManager to tell the player what's what when the game begins
+    public void learnPotato(GameObject thePotato, GameObject theManager, int playerListIndex)
+    {
+        potato = thePotato;
+        potatoLogic = thePotato.GetComponent<PotatoSwitch>();
+
+        gameManager = theManager.GetComponent<GameManager>();
+
+        playerIndex = playerListIndex;
+
     }
 
     void OnCollisionEnter(Collision coll)
@@ -63,21 +77,24 @@ public class PlayerPotatoInterface : MonoBehaviour
     {
         updateHandPosition();
 
-        //if we're holding the potato, move it to our hand position
+        //if we're holding the potato, make it throwable, move it to our hand position
         // quincy - and show text that tells player they have it
         if (holdingPotato)
         {
+            if (Input.GetAxis("Fire1") > 0)
+            {
+                throwPotato();
+            }
             potato.transform.position = handPosition;
             potatoHolderText.gameObject.SetActive(true);
-        } else if (!holdingPotato) {
+        }
+        else if (!holdingPotato)
+        {
             potatoHolderText.gameObject.SetActive(false);
         }
 
         //if we click, attempt to throw the potato
-        if (Input.GetAxis("Fire1") > 0)
-        {
-            throwPotato();
-        }
+
     }
 
     void updateHandPosition()
@@ -87,23 +104,23 @@ public class PlayerPotatoInterface : MonoBehaviour
         handPosition.x = gameObject.transform.position.x;
         handPosition.y = gameObject.transform.position.y + 2;
         handPosition.z = gameObject.transform.position.z;
-        
+
     }
 
     public void pickUpPotato()
     {
-        //make me the potato haver if I'm not already, and put the potato in my hands
-        hasPotato = true;
+        //put the potato in my hands
         holdingPotato = true;
+        potatoLogic.turnOffGravity();
 
         // quincy - play sound
-        if (audioManager != null && audioManager.potatoPickup != null) {
+        if (audioManager != null && audioManager.potatoPickup != null)
+        {
             audioManager.PlaySFX(audioManager.potatoPickup);
         }
 
-        //tell the potato that we are the current holder (For explosion purposes)
-        //potatoLogic.setPotatoHaver(gameObject);
-        //potatoLogic.turnOffGravity();
+        //tell the GameManager that we have the potato now
+        gameManager.setPotatoHaver(gameObject);
 
     }
 
@@ -113,7 +130,8 @@ public class PlayerPotatoInterface : MonoBehaviour
         potatoLogic.turnOnGravity();
 
         // quincy - play sound
-        if (audioManager != null && audioManager.potatoThrow != null) {
+        if (audioManager != null && audioManager.potatoThrow != null)
+        {
             audioManager.PlaySFX(audioManager.potatoThrow);
         }
 
@@ -125,16 +143,20 @@ public class PlayerPotatoInterface : MonoBehaviour
         potatoLogic.setVelocity(throwVel);
 
     }
- 
-    //just in case
-    public bool isPotatoHaver()
-    {
-        return hasPotato;
-    }
 
     public bool isHoldingPotato()
     {
         return holdingPotato;
+    }
+
+    public void setIndex(int newIndex)
+    {
+        playerIndex = newIndex;
+    }
+
+    public int getIndex()
+    {
+        return playerIndex;
     }
 
 }

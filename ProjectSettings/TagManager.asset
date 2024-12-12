@@ -11,6 +11,7 @@ TagManager:
   - PlayerIndicator
   - OuterWalls
   - MovingWalls
+  - Spawnpoint
   layers:
   - Default
   - TransparentFX
