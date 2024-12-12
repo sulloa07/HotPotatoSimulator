@@ -35,7 +35,7 @@ public class PlayerPotatoInterface : MonoBehaviour
     [SerializeField]
     private Text potatoHolderText;
 
-    //private Alteruna.Avatar _avatar;
+    private Alteruna.Avatar _avatar;
 
     private AudioManager audioManager;
     private GameManager gameManager;
@@ -43,10 +43,10 @@ public class PlayerPotatoInterface : MonoBehaviour
     void Start()
     {
 
-        //_avatar = GetComponent<Alteruna.Avatar>();
+        _avatar = GetComponent<Alteruna.Avatar>();
 
-       // if (!_avatar.IsMe)
-          //  return;
+        if (!_avatar.IsMe)
+            return;
 
         //find camera
         playerCam = gameObject.transform.GetChild(0).gameObject;
@@ -64,8 +64,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     //this is called by the GameManager to tell the player what's what when the game begins
     public void learnPotato(GameObject thePotato, GameObject theManager, int playerListIndex)
     {
-        //if (!_avatar.IsMe)
-           // return;
+        if (!_avatar.IsMe)
+            return;
 
         potato = thePotato;
         potatoLogic = thePotato.GetComponent<PotatoSwitch>();
@@ -78,8 +78,8 @@ public class PlayerPotatoInterface : MonoBehaviour
 
     void OnCollisionEnter(Collision coll)
     {
-        //if (!_avatar.IsMe)
-            //return;
+        if (!_avatar.IsMe)
+            return;
 
         //if I collide with the potato, put it in my hands and make me the potato holder if I'm not already
         if (coll.gameObject.CompareTag("Potato"))
@@ -91,8 +91,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     void Update()
     {
 
-        //if (!_avatar.IsMe)
-            //return;
+        if (!_avatar.IsMe)
+            return;
 
         if (!gameStarted && Input.GetAxis("Submit") > 0.1)
         {
@@ -128,8 +128,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     void updateHandPosition()
     {
 
-        //if (!_avatar.IsMe)
-            //return;
+        if (!_avatar.IsMe)
+            return;
 
         //update handPosition: let's say for now it's just a little above the player and we can change this as necessary
         // quincy - potato doesnt turn with the camera so leaving it above player and adding text that tells player they have it
@@ -142,8 +142,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     public void pickUpPotato()
     {
 
-        //if (!_avatar.IsMe)
-            //return;
+        if (!_avatar.IsMe)
+            return;
 
         //put the potato in my hands
         holdingPotato = true;
@@ -163,8 +163,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     public void throwPotato()
     {
 
-        //if (!_avatar.IsMe)
-            //return;
+        if (!_avatar.IsMe)
+            return;
 
         holdingPotato = false;
         potatoLogic.turnOnGravity();
@@ -187,8 +187,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     public bool isHoldingPotato()
     {
 
-        //if (!_avatar.IsMe)
-            //return false;
+        if (!_avatar.IsMe)
+            return false;
 
         return holdingPotato;
     }
@@ -196,8 +196,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     public void setIndex(int newIndex)
     {
 
-        //if (!_avatar.IsMe)
-            //return;
+        if (!_avatar.IsMe)
+            return;
 
         playerIndex = newIndex;
     }
