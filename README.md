@@ -14,7 +14,7 @@ Create a fast-paced multiplayer game where players toss a ticking "hot potato" t
 
 ## Member Goals
 ---
-- Quincy Kapsner: Player basics (movement/model), environments
+- Quincy Kapsner: Player basics (movement/model), audio, menu art
 - Riley Potter: Potato logic
 - Santiago Ulloa: Set up arenas to play in with power-ups, help with potato-player interactions
 - Gerardo Gutierrez: Multiplayer connection
