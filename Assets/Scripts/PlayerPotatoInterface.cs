@@ -35,8 +35,8 @@ public class PlayerPotatoInterface : MonoBehaviour
     void Start()
     {
         //find potato
-        potato = GameObject.FindGameObjectsWithTag("Potato")[0];
-        potatoLogic = potato.GetComponent<PotatoSwitch>();
+        //potato = GameObject.FindGameObjectsWithTag("Potato")[0];
+        //potatoLogic = potato.GetComponent<PotatoSwitch>();
 
         //find camera
         playerCam = gameObject.transform.GetChild(0).gameObject;
@@ -102,8 +102,8 @@ public class PlayerPotatoInterface : MonoBehaviour
         }
 
         //tell the potato that we are the current holder (For explosion purposes)
-        potatoLogic.setPotatoHaver(gameObject);
-        potatoLogic.turnOffGravity();
+        //potatoLogic.setPotatoHaver(gameObject);
+        //potatoLogic.turnOffGravity();
 
     }
 

@@ -22,15 +22,30 @@ public class PlayerController : MonoBehaviour
 
 
     private PlayerMotor motor;
-    
+
+    // Adding Alteruna avatar
+    private Alteruna.Avatar _avatar;
 
     // Start is called before the first frame update
     void Start() {
+
+        // Find component for the avatar
+        _avatar = GetComponent<Alteruna.Avatar>();
+
+        // Check if current player is the owner of joined player
+        if (!_avatar.IsMe)
+            return;
+
         motor = GetComponent<PlayerMotor>();
     }
 
     // Update is called once per frame
     void Update() {
+
+        // Check if current player is the owner of joined player
+        if (!_avatar.IsMe)
+            return;
+
         // movement (WASD)
         // calculate movement velocity as a 3D vector
         float xMove = Input.GetAxis("Horizontal");
