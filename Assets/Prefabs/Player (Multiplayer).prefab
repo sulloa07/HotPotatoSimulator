@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 511547627011325764}
   - component: {fileID: 5232888285332120420}
   - component: {fileID: 7520335824600417734}
+  - component: {fileID: -3950728123152530726}
   m_Layer: 0
   m_Name: Player (Multiplayer)
   m_TagString: Player
@@ -242,6 +243,20 @@ MonoBehaviour:
   OnUnpossessed:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-3950728123152530726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230389732933404340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d4377f8fb8d4cc18520926859c3b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diamondPrefab: {fileID: 1000011841440206, guid: 0ed203d298c050b49bfabe788790e1c2,
+    type: 3}
 --- !u!1 &3636294294606861081
 GameObject:
   m_ObjectHideFlags: 0
