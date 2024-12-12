@@ -16,6 +16,8 @@ public class PlayerPotatoInterface : MonoBehaviour
      * throwing the potato (making non-kinematic and giving a velocity boost in the target direction)
      */
 
+    private bool gameStarted = false;
+
     public float throwStrength;
 
     private int playerIndex;
@@ -75,6 +77,15 @@ public class PlayerPotatoInterface : MonoBehaviour
 
     void Update()
     {
+        if (!gameStarted && Input.GetAxis("Submit") > 0.1)
+        {
+            gameStarted = true;
+            GameObject manager = GameObject.Find("GameManager");
+            GameManager managerScript = manager.GetComponent<GameManager>();
+            managerScript.gameBegins();
+        }
+
+
         updateHandPosition();
 
         //if we're holding the potato, make it throwable, move it to our hand position

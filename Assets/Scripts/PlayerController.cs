@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 5f;
 
 
+
+
     private PlayerMotor motor;
 
     // Adding Alteruna avatar
@@ -76,6 +78,8 @@ public class PlayerController : MonoBehaviour
             // apply jump
             motor.Jump(jumpForce);
         }
+
+
 
         
     }
