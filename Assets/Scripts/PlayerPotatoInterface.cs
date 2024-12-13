@@ -99,7 +99,7 @@ public class PlayerPotatoInterface : MonoBehaviour
             gameStarted = true;
             GameObject manager = GameObject.Find("GameManager");
             GameManager managerScript = manager.GetComponent<GameManager>();
-            managerScript.gameBegins();
+            // managerScript.gameBegins();
         }
 
 

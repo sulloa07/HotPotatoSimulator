@@ -12,6 +12,7 @@ TagManager:
   - OuterWalls
   - MovingWalls
   - Spawnpoint
+  - NetworkManager
   layers:
   - Default
   - TransparentFX

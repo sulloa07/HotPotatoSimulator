@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PotatoTimer : MonoBehaviour
+using Alteruna;
+public class PotatoTimer : AttributesSync
 {
 
     /*
@@ -12,23 +12,24 @@ public class PotatoTimer : MonoBehaviour
      * 
     */
 
+    [SynchronizableField]
     public int timerMin = 15; //measured in seconds
+
+    [SynchronizableField]
     public int timerMax = 60; //min and max are inclusive
 
+    [SynchronizableField]
     public bool timerGoing = false;
 
+    
     private GameManager gameManager;
 
+    [SynchronizableField]
     private float timeRemaining;
 
+    
     private AudioManager audioManager;
 
-    void Start()
-    {
-
-
-
-    }
 
     public void instantiate(GameObject gameManagerGO)
     {

@@ -149,6 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1750c86132c8d044a633e82ef4f4818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: e43ce467-3d57-425e-a2a5-83aff272dc34
+  Reliability: 1
+  LocalMethodBehavior: 1
 --- !u!114 &1717123122143039070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,8 +165,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7550c76c84cc694ebdd59b54c5b67f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: 8d993ed3-8b47-4a07-a918-8c831d36d9bb
+  Reliability: 1
+  LocalMethodBehavior: 1
   timerMin: 20
   timerMax: 30
+  timerGoing: 0
 --- !u!114 &3198255625346929232
 MonoBehaviour:
   m_ObjectHideFlags: 0

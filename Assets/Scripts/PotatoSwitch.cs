@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Alteruna;
 
 
-public class PotatoSwitch : MonoBehaviour
+public class PotatoSwitch : AttributesSync
 {
     /*
      *Responsibilities of this script:
@@ -12,8 +13,9 @@ public class PotatoSwitch : MonoBehaviour
      *that was better left to an external manager.
      */
 
+    
     private GameManager gameManager;
-
+    
     private Rigidbody rb;
 
     public void instantiatePotato(GameObject gameManagerGO)

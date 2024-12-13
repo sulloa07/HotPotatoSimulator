@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Alteruna;
 
-public class GameManager : MonoBehaviour
+public class GameManager : AttributesSync
 {
     /*
      * GameManager is responsible for these things:
@@ -27,11 +28,11 @@ public class GameManager : MonoBehaviour
 
     private GameObject potatoHaver;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     /*
@@ -70,7 +71,10 @@ public class GameManager : MonoBehaviour
         }
 
         //create the potato
-        potato = Instantiate<GameObject>(potatoPrefab);
+        //potato = Instantiate<GameObject>(potatoPrefab);
+        GameObject[] potatoes = GameObject.FindGameObjectsWithTag("Potato");
+        potato = potatoes[0];
+
         potatoLogic = potato.GetComponent<PotatoSwitch>();
         potatoTimer = potato.GetComponent<PotatoTimer>();
 
